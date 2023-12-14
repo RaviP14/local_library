@@ -8,6 +8,9 @@ block content
       li
         a(href=author.url) #{author.name}
         |  (#{author.date_of_birth_formatted} - #{author.date_of_death_formatted})
+        if author.date_of_birth && author.date_of_death != null
+          |  Lifespan: #{author.lifespan.years} Years #{author.lifespan.months} Months and #{Math.round(author.lifespan.days)} Days
+        else
 
     else
       li There are no authors.

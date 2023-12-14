@@ -4,6 +4,8 @@ block content
 
   h1 Author: #{author.name}
   p #{author.date_of_birth_formatted} - #{author.date_of_death_formatted}
+  if author.date_of_birth && author.date_of_death != null
+    p Lifespan: #{author.lifespan.years} Years #{author.lifespan.months} Months and #{Math.round(author.lifespan.days)} Days
 
   div(style='margin-left:20px;margin-top:20px')
 
