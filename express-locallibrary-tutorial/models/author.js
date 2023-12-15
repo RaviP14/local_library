@@ -36,11 +36,15 @@ AuthorSchema.virtual("date_of_death_formatted").get(function () {
   return this.date_of_death ? DateTime.fromJSDate(this.date_of_death).toLocaleString(DateTime.DATE_MED) : '';
 });
 
-AuthorSchema.virtual("lifespan").get(function () {
+AuthorSchema.virtual("life_duration").get(function () {
   const dob = DateTime.fromJSDate(this.date_of_birth)
   const dod = DateTime.fromJSDate(this.date_of_death)
   var lifespan = dod.diff(dob, ["years", "months", "days"]).toObject()
   return lifespan;
+});
+
+AuthorSchema.virtual("lifespan").get(function () {
+  return this.date_of_birth && this.date_of_death ? `${this.date_of_birth_formatted} - ${this.date_of_death_formatted}` : '';
 });
 
 // Export model

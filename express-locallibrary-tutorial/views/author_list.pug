@@ -9,7 +9,7 @@ block content
         a(href=author.url) #{author.name}
         |  (#{author.date_of_birth_formatted} - #{author.date_of_death_formatted})
         if author.date_of_birth && author.date_of_death != null
-          |  Lifespan: #{author.lifespan.years} Years #{author.lifespan.months} Months and #{Math.round(author.lifespan.days)} Days
+          |  Lifespan: #{author.life_duration.years} Years #{author.life_duration.months} Months and #{Math.round(author.life_duration.days)} Days
         else
 
     else

@@ -3,10 +3,11 @@ extends layout
 block content
 
   h1 Author: #{author.name}
-  p #{author.date_of_birth_formatted} - #{author.date_of_death_formatted}
   if author.date_of_birth && author.date_of_death != null
-    p Lifespan: #{author.lifespan.years} Years #{author.lifespan.months} Months and #{Math.round(author.lifespan.days)} Days
-
+    p #{author.lifespan} 
+    p Lifespan: #{author.life_duration.years} Years #{author.life_duration.months} Months and #{Math.round(author.life_duration.days)} Days
+  else 
+    p #{author.date_of_birth_formatted} - 
   div(style='margin-left:20px;margin-top:20px')
 
     h4 Books
