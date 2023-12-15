@@ -7,10 +7,14 @@ block content
     each author in author_list
       li
         a(href=author.url) #{author.name}
-        |  (#{author.date_of_birth_formatted} - #{author.date_of_death_formatted})
         if author.date_of_birth && author.date_of_death != null
+          |  (#{author.lifespan})
           |  Lifespan: #{author.life_duration.years} Years #{author.life_duration.months} Months and #{Math.round(author.life_duration.days)} Days
+        else if author.date_of_birth != null
+          |  (#{author.date_of_birth_formatted} - )
         else
+          |  ( - )
+
 
     else
       li There are no authors.
