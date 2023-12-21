@@ -84,7 +84,7 @@ exports.genre_delete_get = asyncHandler(async (req, res, next) => {
     // Get details of genre and all their books (in parallel)
     const [genre, allBooksByGenre] = await Promise.all([
       Genre.findById(req.params.id).exec(),
-      Book.find({ genre: req.params.id }, "Genre summary").exec(),
+      Book.find({ genre: req.params.id }, "title summary").exec(),
     ]);
   
     if (Genre === null) {
@@ -104,7 +104,7 @@ exports.genre_delete_post = asyncHandler(async (req, res, next) => {
     // Get details of genre and all their books (in parallel)
     const [genre, allBooksByGenre] = await Promise.all([
       Genre.findById(req.params.id).exec(),
-      Book.find({ genre: req.params.id }, "Genre summary").exec(),
+      Book.find({ genre: req.params.id }, "title summary").exec(),
     ]);
   
     if (allBooksByGenre.length > 0) {
