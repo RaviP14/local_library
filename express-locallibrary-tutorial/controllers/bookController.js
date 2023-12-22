@@ -157,7 +157,7 @@ exports.book_delete_get = asyncHandler(async (req, res, next) => {
     // Get details of book and all their book instances (in parallel)
     const [book, bookInstances] = await Promise.all([
       Book.findById(req.params.id).exec(),
-      BookInstance.find({ book: req.params.id }, "title summary").exec(),
+      BookInstance.find({ book: req.params.id }).exec(),
     ]);
   
     if (book === null) {
