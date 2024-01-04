@@ -141,10 +141,6 @@ exports.genre_update_get = asyncHandler(async (req, res, next) => {
   });
   
 // Handle Genre update on POST.
-exports.genre_update_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Genre update POST");
-});
-
 exports.genre_update_post = [
     // Validate and sanitize the name field.
     body("name", "Genre name must contain at least 3 characters")
