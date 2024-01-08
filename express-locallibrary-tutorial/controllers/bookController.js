@@ -171,21 +171,16 @@ exports.book_delete_get = asyncHandler(async (req, res, next) => {
       book_instances: bookInstances,
     });
   });
-  
-// Handle book delete on POST.
-exports.book_delete_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Book delete POST");
-});
 
 // Handle book delete on POST.
-exports.author_delete_post = asyncHandler(async (req, res, next) => {
+exports.book_delete_post = asyncHandler(async (req, res, next) => {
     // Get details of book and all their instances (in parallel)
     const [book, bookInstances] = await Promise.all([
         Book.findById(req.params.id).exec(),
         BookInstance.find({ book: req.params.id }, "title summary").exec(),
       ]);
   
-    if (BookInstances.length > 0) {
+    if (bookInstances.length > 0) {
       // Author has books. Render in same way as for GET route.
       res.render("book_delete", {
         title: "Delete Book",
@@ -195,7 +190,7 @@ exports.author_delete_post = asyncHandler(async (req, res, next) => {
       return;
     } else {
       // Book has no book instances. Delete object and redirect to the list of books.
-      await book.findByIdAndDelete(req.body.bookid);
+      await Book.findByIdAndDelete(req.body.bookid);
       res.redirect("/catalog/books");
     }
   });
